@@ -47,7 +47,7 @@ pipeline {
                         ssh-keygen -R "$SERVER_IP"
 
                         scp -i "$SSH_KEY" -o StrictHostKeyChecking=no \
-                         ./docker-compose.yaml$SERVER_USER@$SERVER_IP:~/ 
+                         ./docker-compose.yaml $SERVER_USER@$SERVER_IP:~/ 
 
                         ssh -i "$SSH_KEY" \
                         -o StrictHostKeyChecking=no \
