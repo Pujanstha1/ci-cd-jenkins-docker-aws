@@ -1,0 +1,135 @@
+/* General body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    color: #2c3e50;
+}
+
+/* Container for list and form */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Add Item link */
+a.add-item {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+a.add-item:hover {
+    background-color: #16a085;
+}
+
+/* Item cards */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Item info */
+.item-info {
+    flex: 1;
+}
+
+/* Buttons container */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Edit and Delete buttons */
+.actions a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.actions a.edit {
+    background-color: #3498db;
+}
+
+.actions a.edit:hover {
+    background-color: #2980b9;
+}
+
+.actions a.delete {
+    background-color: #e74c3c;
+}
+
+.actions a.delete:hover {
+    background-color: #c0392b;
+}
+
+/* Form styling */
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"], input[type="submit"], button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+input[type="submit"], button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #16a085;
+}

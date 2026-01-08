@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="/create" class="add-item">+ Add Item</a>
+<ul>
+    {% for item in items %}
+        <li>
+            <div class="item-info">
+                <b>{{ item.name }}</b><br>
+                {{ item.description }}
+            </div>
+            <div class="actions">
+                <a href="/edit/{{ item.id }}" class="edit">Edit</a>
+                <a href="/delete/{{ item.id }}" class="delete">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
