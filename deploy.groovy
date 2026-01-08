@@ -14,23 +14,23 @@ pipeline {
     }
 
     stages {
-        stage ('Build an Image and Push it to DockerHub') {
+        // stage ('Build an Image and Push it to DockerHub') {
 
-            steps {
+        //     steps {
 
-                withCredentials([
-                string(credentialsId: "DOCKER_HUB_PASSWORD", variable: "DOCKER_HUB_PASSWORD")
-                ]) {
-                    sh '''
-                        set -e
-                        echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USER --password-stdin
-                        docker build -t "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG" .
-                        docker push "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG"
-                    '''
-                    }
-            }
+        //         withCredentials([
+        //         string(credentialsId: "DOCKER_HUB_PASSWORD", variable: "DOCKER_HUB_PASSWORD")
+        //         ]) {
+        //             sh '''
+        //                 set -e
+        //                 echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USER --password-stdin
+        //                 docker build -t "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG" .
+        //                 docker push "$DOCKER_HUB_USER/$DOCKER_HUB_REPO:$TAG"
+        //             '''
+        //             }
+        //     }
             
-        }
+        // }
 
         stage ('Deploy to EC2') {
 
@@ -42,15 +42,13 @@ pipeline {
                         set -e
                         mkdir -p ~/.ssh
                         chmod 700 ~/.ssh
-                        echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-                        chmod 600 ~/.ssh/config
 
                         touch ~/.ssh/known_hosts 
                         ssh-keygen -R "$SERVER_IP"
 
-                        scp -i "$SSH_KEY" ./docker-compose.yaml $SERVER_USER@$SERVER_IP:~/
+                        scp -i "$SSH_KEY" -o StrictHostKeyChecking=no ./docker-compose.yaml$SERVER_USER@$SERVER_IP:~/
 
-                        ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP " 
+                        ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP " 
                         docker compose --env-file ./.env/dev_env pull 
                         docker compose --env-file ./.env/dev_env down 
                         docker compose --env-file ./.env/dev_env up -d 
