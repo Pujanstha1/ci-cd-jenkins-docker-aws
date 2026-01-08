@@ -45,7 +45,7 @@ pipeline {
                         echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
                         chmod 600 ~/.ssh/config
 
-                        // These two lines are not required as we upload the .pem file itself and assume that we don't need to change the chmod
+                // These two lines are not required as we upload the .pem file itself and assume that we don't need to change the chmod
                         // echo "$SSH_KEY" | base64 -d >> mykey.pem
                         // chmod 400 mykey.pem 
                         touch ~/.ssh/known_hosts 
