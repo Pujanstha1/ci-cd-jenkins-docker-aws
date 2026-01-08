@@ -39,7 +39,7 @@ pipeline {
                     file(credentialsId: "SSH_KEY_FILE", variable:"SSH_KEY")
                 ]) {
                     sh '''
-                        set -e
+                       
                         mkdir -p ~/.ssh
                         chmod 700 ~/.ssh
 
