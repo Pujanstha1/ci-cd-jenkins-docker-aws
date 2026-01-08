@@ -5,7 +5,7 @@ from .database import SessionLocal, engine
 from . import models, crud, schemas
 from fastapi.staticfiles import StaticFiles
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -13,6 +13,10 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 templates = Jinja2Templates(directory="app/templates")
+
+@app.on_event("startup")
+def on_startup():
+    models.Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()
